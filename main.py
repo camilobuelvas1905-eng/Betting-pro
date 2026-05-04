@@ -27,8 +27,12 @@ def picks():
                         odds = outcome["price"]
 
                         p_market = 1 / odds
-                        p_model = 0.55
-
+                        p_model = model_probability(odds, odds)
+                        def model_probability(home_odds, away_odds):
+    p_home = 1 / home_odds
+    p_away = 1 / away_odds
+    total = p_home + p_away
+    return p_home / total
                         value = round(p_model - p_market, 3)
 
                         if value > 0.05:
